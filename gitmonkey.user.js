@@ -1,3 +1,8 @@
+// ==UserScript==
+// @match https://github.com/*/*/blob/*
+// @match https://code.google.com/p/*/source/browse/*
+// ==/UserScript==
+
 function githubMain() {
   var lines = document.getElementsByClassName('line');
   // There should only be one line beginning with 'package'
@@ -11,8 +16,8 @@ function githubMain() {
   var baseUrl = document.URL.replace(currentFile, "");
 
   for (i=0; i<imports.length; i++) {
-    var line = imports[i];
-    var imp = line.children[line.length-2]; // Final child is semicolon
+    var lchildren = imports[i].children;
+    var imp = lchildren[lchildren.length-2]; // Final child is semicolon
     var impstr = imp.innerHTML.split('.');
 
     // If this file is under the package subset within this repo...
@@ -83,3 +88,16 @@ function removePeriodsAndTrim(tokens) {
 
   return ret;
 }
+
+function main() {
+  var googlePattern = 'https://code.google.com/';
+  var githubPattern = 'https://github.com/';
+
+  if (document.URL.slice(0, googlePattern.length) == googlePattern) {
+    googleCodeMain();
+  } else if (document.URL.slice(0, githubPattern.length) == githubPattern) {
+    githubMain();
+  }
+}
+
+main();
