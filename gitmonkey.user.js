@@ -1,6 +1,6 @@
 // ==UserScript==
-// @match https://github.com/*/*/blob/*
-// @match https://code.google.com/p/*/source/browse/*
+// @match https://github.com/*/*/blob/*.java
+// @match https://code.google.com/p/*/source/browse/*.java
 // ==/UserScript==
 
 function githubMain() {
