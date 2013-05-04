@@ -2,7 +2,16 @@ function githubMain() {
   var lines = document.getElementsByClassName('line');
   // There should only be one line beginning with 'package'
   packagedef = tokenizeGithubPath(linesStartingWith(lines, 'package')[0]);
-  console.log(linesStartingWith(lines, 'import'));
+  var imports = linesStartingWith(lines, 'import');
+
+  // Just assume everything is under "com.example" for now
+  var rootPackage = packagedef.slice(0, 2);
+
+  for (i=0; i<imports.length; i++) {
+    var imp = imports[i].children[1].innerHTML.split('.');
+    if (JSON.stringify(imp.slice(0, 2)) == JSON.stringify(rootPackage)) {
+    }
+  }
 }
 
 function googleCodeMain() {
