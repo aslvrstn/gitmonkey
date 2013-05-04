@@ -1,4 +1,7 @@
 // ==UserScript==
+// @description Replaces java imports with links to the corresponding file on github (or google code).
+// @name gitmonkey
+//
 // @match https://github.com/*/*/blob/*.java
 // @match https://code.google.com/p/*/source/browse/*.java
 // ==/UserScript==
